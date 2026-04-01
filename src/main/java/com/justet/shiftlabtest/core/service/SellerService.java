@@ -1,8 +1,8 @@
 package com.justet.shiftlabtest.core.service;
 
 import com.justet.shiftlabtest.api.dto.PageResponse;
-import com.justet.shiftlabtest.api.dto.SellerRequest;
-import com.justet.shiftlabtest.api.dto.SellerResponse;
+import com.justet.shiftlabtest.api.dto.seller.SellerRequest;
+import com.justet.shiftlabtest.api.dto.seller.SellerResponse;
 import org.springframework.data.domain.Pageable;
 
 public interface SellerService {

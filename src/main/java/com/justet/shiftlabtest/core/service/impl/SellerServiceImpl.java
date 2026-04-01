@@ -1,8 +1,8 @@
 package com.justet.shiftlabtest.core.service.impl;
 
 import com.justet.shiftlabtest.api.dto.PageResponse;
-import com.justet.shiftlabtest.api.dto.SellerRequest;
-import com.justet.shiftlabtest.api.dto.SellerResponse;
+import com.justet.shiftlabtest.api.dto.seller.SellerRequest;
+import com.justet.shiftlabtest.api.dto.seller.SellerResponse;
 import com.justet.shiftlabtest.api.mapper.SellerMapper;
 import com.justet.shiftlabtest.core.entity.Seller;
 import com.justet.shiftlabtest.core.exception.ErrorCode;

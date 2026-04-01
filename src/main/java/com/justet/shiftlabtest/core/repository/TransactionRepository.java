@@ -18,15 +18,16 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     Page<Transaction> findByTransactionDateBetween(LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 
     Page<Transaction> findBySellerIdAndTransactionDateBetween(Long sellerId, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
-    
+
     @Query("""
-        SELECT t.seller.id, SUM(t.amount) as total
+        SELECT t.seller.id, SUM(t.amount)
         FROM Transaction t
         WHERE t.transactionDate BETWEEN :start AND :end
         GROUP BY t.seller.id
-        ORDER BY total DESC
+        ORDER BY SUM(t.amount) DESC
     """)
-    Page<Object[]> findTopSellerByPeriod(LocalDateTime start, LocalDateTime end, Pageable pageable);
+    Page<Object[]> findTopSellerByPeriod( LocalDateTime start, LocalDateTime end, Pageable pageable
+    );
 
     @Query("""
         SELECT t.seller.id, SUM(t.amount) as total

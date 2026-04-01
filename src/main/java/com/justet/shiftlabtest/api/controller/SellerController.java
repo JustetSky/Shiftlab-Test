@@ -2,8 +2,8 @@ package com.justet.shiftlabtest.api.controller;
 
 import com.justet.shiftlabtest.api.constant.ApiPath;
 import com.justet.shiftlabtest.api.dto.PageResponse;
-import com.justet.shiftlabtest.api.dto.SellerRequest;
-import com.justet.shiftlabtest.api.dto.SellerResponse;
+import com.justet.shiftlabtest.api.dto.seller.SellerRequest;
+import com.justet.shiftlabtest.api.dto.seller.SellerResponse;
 import com.justet.shiftlabtest.core.service.SellerService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;

@@ -1,7 +1,7 @@
 package com.justet.shiftlabtest.api.mapper;
 
-import com.justet.shiftlabtest.api.dto.SellerRequest;
-import com.justet.shiftlabtest.api.dto.SellerResponse;
+import com.justet.shiftlabtest.api.dto.seller.SellerRequest;
+import com.justet.shiftlabtest.api.dto.seller.SellerResponse;
 import com.justet.shiftlabtest.core.entity.Seller;
 import org.mapstruct.Mapper;
 
