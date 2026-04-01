@@ -1,5 +1,6 @@
 package com.justet.shiftlabtest.core.exception;
 
+import com.justet.shiftlabtest.api.error.ErrorCode;
 import lombok.Getter;
 
 @Getter
