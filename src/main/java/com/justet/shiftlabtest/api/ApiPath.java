@@ -1,4 +1,4 @@
-package com.justet.shiftlabtest.api.constant;
+package com.justet.shiftlabtest.api;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

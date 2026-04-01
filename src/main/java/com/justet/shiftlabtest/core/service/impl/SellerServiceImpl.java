@@ -3,9 +3,9 @@ package com.justet.shiftlabtest.core.service.impl;
 import com.justet.shiftlabtest.api.model.PageResponse;
 import com.justet.shiftlabtest.api.model.seller.SellerRequest;
 import com.justet.shiftlabtest.api.model.seller.SellerResponse;
-import com.justet.shiftlabtest.api.mapper.SellerMapper;
+import com.justet.shiftlabtest.core.mapper.SellerMapper;
 import com.justet.shiftlabtest.core.entity.Seller;
-import com.justet.shiftlabtest.core.exception.ErrorCode;
+import com.justet.shiftlabtest.api.error.ErrorCode;
 import com.justet.shiftlabtest.core.exception.ServiceException;
 import com.justet.shiftlabtest.core.repository.SellerRepository;
 import com.justet.shiftlabtest.core.service.SellerService;
@@ -14,8 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.beans.Transient;
 
 @Service
 @RequiredArgsConstructor

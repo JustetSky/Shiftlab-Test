@@ -1,4 +1,4 @@
-package com.justet.shiftlabtest.api.constant;
+package com.justet.shiftlabtest.api.model.analytic;
 
 public enum PeriodType {
     DAY,

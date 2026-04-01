@@ -1,12 +1,12 @@
 package com.justet.shiftlabtest.core.service.impl;
 
-import com.justet.shiftlabtest.api.constant.PeriodType;
+import com.justet.shiftlabtest.api.model.analytic.PeriodType;
 import com.justet.shiftlabtest.api.model.PageResponse;
 import com.justet.shiftlabtest.api.model.analytic.BestPeriodResponse;
 import com.justet.shiftlabtest.api.model.analytic.MostProductiveResponse;
 import com.justet.shiftlabtest.api.model.analytic.SellerTotalResponse;
 import com.justet.shiftlabtest.core.entity.Seller;
-import com.justet.shiftlabtest.core.exception.ErrorCode;
+import com.justet.shiftlabtest.api.error.ErrorCode;
 import com.justet.shiftlabtest.core.exception.ServiceException;
 import com.justet.shiftlabtest.core.repository.SellerRepository;
 import com.justet.shiftlabtest.core.repository.TransactionRepository;

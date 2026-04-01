@@ -1,6 +1,6 @@
 package com.justet.shiftlabtest.api.controller;
 
-import com.justet.shiftlabtest.api.constant.ApiPath;
+import com.justet.shiftlabtest.api.ApiPath;
 import com.justet.shiftlabtest.api.model.PageResponse;
 import com.justet.shiftlabtest.api.model.seller.SellerRequest;
 import com.justet.shiftlabtest.api.model.seller.SellerResponse;

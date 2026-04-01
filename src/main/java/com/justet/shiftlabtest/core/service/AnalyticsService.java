@@ -1,6 +1,6 @@
 package com.justet.shiftlabtest.core.service;
 
-import com.justet.shiftlabtest.api.constant.PeriodType;
+import com.justet.shiftlabtest.api.model.analytic.PeriodType;
 import com.justet.shiftlabtest.api.model.PageResponse;
 import com.justet.shiftlabtest.api.model.analytic.BestPeriodResponse;
 import com.justet.shiftlabtest.api.model.analytic.MostProductiveResponse;

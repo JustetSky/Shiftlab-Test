@@ -1,4 +1,4 @@
-package com.justet.shiftlabtest.api.mapper;
+package com.justet.shiftlabtest.core.mapper;
 
 import com.justet.shiftlabtest.api.model.seller.SellerRequest;
 import com.justet.shiftlabtest.api.model.seller.SellerResponse;
