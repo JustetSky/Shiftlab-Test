@@ -21,7 +21,7 @@ public class Seller {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "contact_info", nullable = false, length = 255)
+    @Column(name = "contact_info", nullable = false)
     private String contactInfo;
 
     @Column(name = "registration_date", nullable = false)
