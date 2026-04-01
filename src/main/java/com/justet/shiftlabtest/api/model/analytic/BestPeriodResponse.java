@@ -1,4 +1,4 @@
-package com.justet.shiftlabtest.api.dto.analytic;
+package com.justet.shiftlabtest.api.model.analytic;
 
 import lombok.*;
 

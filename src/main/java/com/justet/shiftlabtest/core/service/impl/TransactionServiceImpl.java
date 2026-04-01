@@ -1,8 +1,8 @@
 package com.justet.shiftlabtest.core.service.impl;
 
-import com.justet.shiftlabtest.api.dto.PageResponse;
-import com.justet.shiftlabtest.api.dto.transaction.TransactionRequest;
-import com.justet.shiftlabtest.api.dto.transaction.TransactionResponse;
+import com.justet.shiftlabtest.api.model.PageResponse;
+import com.justet.shiftlabtest.api.model.transaction.TransactionRequest;
+import com.justet.shiftlabtest.api.model.transaction.TransactionResponse;
 import com.justet.shiftlabtest.api.mapper.TransactionMapper;
 import com.justet.shiftlabtest.core.entity.Seller;
 import com.justet.shiftlabtest.core.entity.Transaction;

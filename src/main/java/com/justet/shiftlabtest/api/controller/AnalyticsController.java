@@ -2,10 +2,10 @@ package com.justet.shiftlabtest.api.controller;
 
 import com.justet.shiftlabtest.api.constant.ApiPath;
 import com.justet.shiftlabtest.api.constant.PeriodType;
-import com.justet.shiftlabtest.api.dto.PageResponse;
-import com.justet.shiftlabtest.api.dto.analytic.BestPeriodResponse;
-import com.justet.shiftlabtest.api.dto.analytic.MostProductiveResponse;
-import com.justet.shiftlabtest.api.dto.analytic.SellerTotalResponse;
+import com.justet.shiftlabtest.api.model.PageResponse;
+import com.justet.shiftlabtest.api.model.analytic.BestPeriodResponse;
+import com.justet.shiftlabtest.api.model.analytic.MostProductiveResponse;
+import com.justet.shiftlabtest.api.model.analytic.SellerTotalResponse;
 import com.justet.shiftlabtest.core.service.AnalyticsService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;

@@ -1,9 +1,9 @@
 package com.justet.shiftlabtest.api.controller;
 
 import com.justet.shiftlabtest.api.constant.ApiPath;
-import com.justet.shiftlabtest.api.dto.PageResponse;
-import com.justet.shiftlabtest.api.dto.transaction.TransactionRequest;
-import com.justet.shiftlabtest.api.dto.transaction.TransactionResponse;
+import com.justet.shiftlabtest.api.model.PageResponse;
+import com.justet.shiftlabtest.api.model.transaction.TransactionRequest;
+import com.justet.shiftlabtest.api.model.transaction.TransactionResponse;
 import com.justet.shiftlabtest.core.service.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-package com.justet.shiftlabtest.api.dto.seller;
+package com.justet.shiftlabtest.api.model.seller;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;

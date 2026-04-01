@@ -1,6 +1,6 @@
 package com.justet.shiftlabtest.api.mapper;
 
-import com.justet.shiftlabtest.api.dto.transaction.TransactionResponse;
+import com.justet.shiftlabtest.api.model.transaction.TransactionResponse;
 import com.justet.shiftlabtest.core.entity.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

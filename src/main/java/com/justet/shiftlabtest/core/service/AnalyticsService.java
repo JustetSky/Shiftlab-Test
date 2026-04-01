@@ -1,10 +1,10 @@
 package com.justet.shiftlabtest.core.service;
 
 import com.justet.shiftlabtest.api.constant.PeriodType;
-import com.justet.shiftlabtest.api.dto.PageResponse;
-import com.justet.shiftlabtest.api.dto.analytic.BestPeriodResponse;
-import com.justet.shiftlabtest.api.dto.analytic.MostProductiveResponse;
-import com.justet.shiftlabtest.api.dto.analytic.SellerTotalResponse;
+import com.justet.shiftlabtest.api.model.PageResponse;
+import com.justet.shiftlabtest.api.model.analytic.BestPeriodResponse;
+import com.justet.shiftlabtest.api.model.analytic.MostProductiveResponse;
+import com.justet.shiftlabtest.api.model.analytic.SellerTotalResponse;
 import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
