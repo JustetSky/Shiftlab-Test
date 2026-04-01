@@ -8,5 +8,8 @@ public class ApiPath {
 
     public static final String SELLERS = "/sellers";
     public static final String SELLER_ID = "/{sellerId}";
+    public static final String TRANSACTIONS = "/transactions";
+    public static final String TRANSACTION_ID = "/{transactionId}";
+    public static final String SELLER_TRANSACTIONS = "/seller/{sellerId}";
 
 }
