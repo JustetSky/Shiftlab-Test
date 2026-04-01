@@ -9,10 +9,13 @@ import com.justet.shiftlabtest.core.exception.ErrorCode;
 import com.justet.shiftlabtest.core.exception.ServiceException;
 import com.justet.shiftlabtest.core.repository.SellerRepository;
 import com.justet.shiftlabtest.core.service.SellerService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.beans.Transient;
 
 @Service
 @RequiredArgsConstructor
@@ -50,23 +53,16 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public SellerResponse getSellerById(Long sellerId) {
 
-        Seller seller = sellerRepository.findById(sellerId)
-                .orElseThrow(() -> new ServiceException(
-                        ErrorCode.SELLER_NOT_FOUND,
-                        "Seller with id " + sellerId + " not found"
-                ));
+        Seller seller = findSellerEntityById(sellerId);
 
         return sellerMapper.toResponse(seller);
     }
 
+    @Transactional
     @Override
     public SellerResponse updateSeller(Long sellerId, SellerRequest request) {
 
-        Seller seller = sellerRepository.findById(sellerId)
-                .orElseThrow(() -> new ServiceException(
-                        ErrorCode.SELLER_NOT_FOUND,
-                        "Seller with id " + sellerId + " not found"
-                ));
+        Seller seller = findSellerEntityById(sellerId);
 
         seller.setName(request.getName());
         seller.setContactInfo(request.getContactInfo());
@@ -78,14 +74,17 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public void deleteSeller(Long sellerId) {
+        
+        sellerRepository.deleteById(sellerId);
+        
+    }
 
-        Seller seller = sellerRepository.findById(sellerId)
+    private Seller findSellerEntityById(Long sellerId) {
+        return sellerRepository.findById(sellerId)
                 .orElseThrow(() -> new ServiceException(
                         ErrorCode.SELLER_NOT_FOUND,
                         "Seller with id " + sellerId + " not found"
                 ));
-
-        sellerRepository.delete(seller);
     }
-    
+
 }
