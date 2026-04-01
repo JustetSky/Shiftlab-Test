@@ -3,6 +3,7 @@ package com.justet.shiftlabtest.api.controller;
 import com.justet.shiftlabtest.api.constant.ApiPath;
 import com.justet.shiftlabtest.api.constant.PeriodType;
 import com.justet.shiftlabtest.api.dto.PageResponse;
+import com.justet.shiftlabtest.api.dto.analytic.BestPeriodResponse;
 import com.justet.shiftlabtest.api.dto.analytic.MostProductiveResponse;
 import com.justet.shiftlabtest.api.dto.analytic.SellerTotalResponse;
 import com.justet.shiftlabtest.core.service.AnalyticsService;
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Validated
 @RestController
@@ -38,5 +40,16 @@ public class AnalyticsController {
             Pageable pageable
     ) {
         return analyticsService.getSellersWithTotalLessThan(period, amount, pageable);
+    }
+
+    @Operation(summary = "Лучший период продавца")
+    @GetMapping(ApiPath.BEST_PERIOD + ApiPath.SELLER_ID)
+    public BestPeriodResponse getBestPeriod(
+            @PathVariable Long sellerId,
+            @RequestParam PeriodType period,
+            @RequestParam LocalDateTime from,
+            @RequestParam LocalDateTime to
+    ) {
+        return analyticsService.getBestPeriod(sellerId, period, from, to);
     }
 }

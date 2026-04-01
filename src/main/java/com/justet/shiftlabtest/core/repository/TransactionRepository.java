@@ -32,4 +32,44 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
         HAVING SUM(t.amount) < :amount
     """)
     Page<Object[]> findSellersWithTotalLessThan(LocalDateTime start, LocalDateTime end, BigDecimal amount, Pageable pageable);
+
+    @Query("""
+        SELECT DATE(t.transactionDate), SUM(t.amount)
+        FROM Transaction t
+        WHERE t.seller.id = :sellerId
+          AND t.transactionDate BETWEEN :from AND :to
+        GROUP BY DATE(t.transactionDate)
+        ORDER BY SUM(t.amount) DESC
+    """)
+    Page<Object[]> findBestDay(Long sellerId, LocalDateTime from, LocalDateTime to,  Pageable pageable);
+
+    @Query("""
+        SELECT FUNCTION('DATE_TRUNC', 'month', t.transactionDate), SUM(t.amount)
+        FROM Transaction t
+        WHERE t.seller.id = :sellerId
+          AND t.transactionDate BETWEEN :from AND :to
+        GROUP BY FUNCTION('DATE_TRUNC', 'month', t.transactionDate)
+        ORDER BY SUM(t.amount) DESC
+    """)
+    Page<Object[]> findBestMonth(Long sellerId, LocalDateTime from, LocalDateTime to, Pageable pageable);
+
+    @Query("""
+        SELECT FUNCTION('DATE_TRUNC', 'quarter', t.transactionDate), SUM(t.amount)
+        FROM Transaction t
+        WHERE t.seller.id = :sellerId
+          AND t.transactionDate BETWEEN :from AND :to
+        GROUP BY FUNCTION('DATE_TRUNC', 'quarter', t.transactionDate)
+        ORDER BY SUM(t.amount) DESC
+    """)
+    Page<Object[]> findBestQuarter(Long sellerId, LocalDateTime from, LocalDateTime to,  Pageable pageable);
+
+    @Query("""
+        SELECT FUNCTION('DATE_TRUNC', 'year', t.transactionDate), SUM(t.amount)
+        FROM Transaction t
+        WHERE t.seller.id = :sellerId
+          AND t.transactionDate BETWEEN :from AND :to
+        GROUP BY FUNCTION('DATE_TRUNC', 'year', t.transactionDate)
+        ORDER BY SUM(t.amount) DESC
+    """)
+    Page<Object[]> findBestYear(Long sellerId, LocalDateTime from, LocalDateTime to, Pageable pageable);
 }

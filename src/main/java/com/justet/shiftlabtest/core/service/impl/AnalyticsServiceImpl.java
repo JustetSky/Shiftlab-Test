@@ -2,9 +2,11 @@ package com.justet.shiftlabtest.core.service.impl;
 
 import com.justet.shiftlabtest.api.constant.PeriodType;
 import com.justet.shiftlabtest.api.dto.PageResponse;
+import com.justet.shiftlabtest.api.dto.analytic.BestPeriodResponse;
 import com.justet.shiftlabtest.api.dto.analytic.MostProductiveResponse;
 import com.justet.shiftlabtest.api.dto.analytic.SellerTotalResponse;
 import com.justet.shiftlabtest.core.entity.Seller;
+import com.justet.shiftlabtest.core.entity.Transaction;
 import com.justet.shiftlabtest.core.exception.ErrorCode;
 import com.justet.shiftlabtest.core.exception.ServiceException;
 import com.justet.shiftlabtest.core.repository.SellerRepository;
@@ -128,4 +130,76 @@ public class AnalyticsServiceImpl implements AnalyticsService {
                 .hasNext(page.hasNext())
                 .build();
     }
+
+    @Override
+    public BestPeriodResponse getBestPeriod(
+            Long sellerId,
+            PeriodType period,
+            LocalDateTime from,
+            LocalDateTime to
+    ) {
+
+        // 1. Проверка продавца
+        sellerRepository.findById(sellerId)
+                .orElseThrow(() -> new ServiceException(
+                        ErrorCode.SELLER_NOT_FOUND,
+                        "Seller with id " + sellerId + " not found"
+                ));
+
+        // 2. Проверка диапазона
+        if (from.isAfter(to)) {
+            throw new ServiceException(
+                    ErrorCode.BAD_REQUEST,
+                    "from must be before to"
+            );
+        }
+
+        // 3. Запрос
+        Page<Object[]> result = switch (period) {
+            case DAY -> transactionRepository.findBestDay(sellerId, from, to, Pageable.ofSize(1));
+            case MONTH -> transactionRepository.findBestMonth(sellerId, from, to, Pageable.ofSize(1));
+            case QUARTER -> transactionRepository.findBestQuarter(sellerId, from, to, Pageable.ofSize(1));
+            case YEAR -> transactionRepository.findBestYear(sellerId, from, to, Pageable.ofSize(1));
+        };
+
+        if (result.isEmpty()) {
+            throw new ServiceException(
+                    ErrorCode.NOT_FOUND,
+                    "No transactions in given range"
+            );
+        }
+
+        Object[] row = result.getContent().get(0);
+
+        // 4. Безопасное преобразование даты
+        Object dateObj = row[0];
+        LocalDateTime start;
+
+        if (dateObj instanceof java.sql.Timestamp ts) {
+            start = ts.toLocalDateTime();
+        } else if (dateObj instanceof java.sql.Date d) {
+            start = d.toLocalDate().atStartOfDay();
+        } else if (dateObj instanceof LocalDateTime ldt) {
+            start = ldt;
+        } else {
+            throw new RuntimeException("Unknown date type: " + dateObj.getClass());
+        }
+
+        BigDecimal total = (BigDecimal) row[1];
+
+        // 5. Конец периода
+        LocalDateTime end = switch (period) {
+            case DAY -> start.plusDays(1).minusSeconds(1);
+            case MONTH -> start.plusMonths(1).minusSeconds(1);
+            case QUARTER -> start.plusMonths(3).minusSeconds(1);
+            case YEAR -> start.plusYears(1).minusSeconds(1);
+        };
+
+        return BestPeriodResponse.builder()
+                .startDate(start)
+                .endDate(end)
+                .totalAmount(total)
+                .build();
+    }
+    
 }

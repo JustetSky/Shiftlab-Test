@@ -14,5 +14,6 @@ public class ApiPath {
     public static final String ANALYTICS = "/analytics";
     public static final String MOST_PRODUCTIVE = "/most-productive/{period}";
     public static final String TOTAL_LESS_THAN = "/total-less-than";
+    public static final String BEST_PERIOD = "/best-period";
 
 }
