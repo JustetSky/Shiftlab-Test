@@ -1,4 +1,4 @@
-package com.justet.shiftlabtest.core.exception;
+package com.justet.shiftlabtest.api.error;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
-package com.justet.shiftlabtest.core.exception;
+package com.justet.shiftlabtest.api.error;
 
-import com.justet.shiftlabtest.api.error.ErrorMessage;
+import com.justet.shiftlabtest.core.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.ResponseEntity;
