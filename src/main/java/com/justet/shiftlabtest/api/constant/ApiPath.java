@@ -12,6 +12,7 @@ public class ApiPath {
     public static final String TRANSACTION_ID = "/{transactionId}";
     public static final String SELLER_TRANSACTIONS = "/seller/{sellerId}";
     public static final String ANALYTICS = "/analytics";
-    public static final String MOST_PRODUCTIVE = "/most-productive/{period}";;
+    public static final String MOST_PRODUCTIVE = "/most-productive/{period}";
+    public static final String TOTAL_LESS_THAN = "/total-less-than";
 
 }

@@ -1,7 +1,9 @@
 package com.justet.shiftlabtest.core.service.impl;
 
 import com.justet.shiftlabtest.api.constant.PeriodType;
+import com.justet.shiftlabtest.api.dto.PageResponse;
 import com.justet.shiftlabtest.api.dto.analytic.MostProductiveResponse;
+import com.justet.shiftlabtest.api.dto.analytic.SellerTotalResponse;
 import com.justet.shiftlabtest.core.entity.Seller;
 import com.justet.shiftlabtest.core.exception.ErrorCode;
 import com.justet.shiftlabtest.core.exception.ServiceException;
@@ -69,6 +71,61 @@ public class AnalyticsServiceImpl implements AnalyticsService {
                 .sellerId(sellerId)
                 .name(seller.getName())
                 .totalAmount(total)
+                .build();
+    }
+
+    @Override
+    public PageResponse<SellerTotalResponse> getSellersWithTotalLessThan(
+            PeriodType period,
+            BigDecimal amount,
+            Pageable pageable
+    ) {
+
+        LocalDateTime now = LocalDateTime.now();
+
+        LocalDateTime start = switch (period) {
+            case DAY -> now.toLocalDate().atStartOfDay();
+            case MONTH -> now.withDayOfMonth(1).toLocalDate().atStartOfDay();
+            case YEAR -> now.withDayOfYear(1).toLocalDate().atStartOfDay();
+            case QUARTER -> {
+                int currentMonth = now.getMonthValue();
+                int startMonth = ((currentMonth - 1) / 3) * 3 + 1;
+                yield LocalDateTime.of(now.getYear(), startMonth, 1, 0, 0);
+            }
+        };
+
+        LocalDateTime end = now;
+
+        Page<Object[]> page = transactionRepository.findSellersWithTotalLessThan(
+                start,
+                end,
+                amount,
+                pageable
+        );
+
+        return PageResponse.<SellerTotalResponse>builder()
+                .items(page.getContent().stream()
+                        .map(row -> {
+                            Long sellerId = (Long) row[0];
+                            BigDecimal total = (BigDecimal) row[1];
+
+                            Seller seller = sellerRepository.findById(sellerId)
+                                    .orElseThrow(() -> new ServiceException(
+                                            ErrorCode.SELLER_NOT_FOUND,
+                                            "Seller not found"
+                                    ));
+
+                            return SellerTotalResponse.builder()
+                                    .sellerId(sellerId)
+                                    .name(seller.getName())
+                                    .totalAmount(total)
+                                    .build();
+                        })
+                        .toList())
+                .page(page.getNumber())
+                .size(page.getSize())
+                .total(page.getTotalElements())
+                .hasNext(page.hasNext())
                 .build();
     }
 }

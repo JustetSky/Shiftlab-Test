@@ -2,12 +2,17 @@ package com.justet.shiftlabtest.api.controller;
 
 import com.justet.shiftlabtest.api.constant.ApiPath;
 import com.justet.shiftlabtest.api.constant.PeriodType;
+import com.justet.shiftlabtest.api.dto.PageResponse;
 import com.justet.shiftlabtest.api.dto.analytic.MostProductiveResponse;
+import com.justet.shiftlabtest.api.dto.analytic.SellerTotalResponse;
 import com.justet.shiftlabtest.core.service.AnalyticsService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @Validated
 @RestController
@@ -23,5 +28,15 @@ public class AnalyticsController {
             @PathVariable PeriodType period
     ) {
         return analyticsService.getMostProductive(period);
+    }
+
+    @Operation(summary = "Продавцы с суммой меньше указанной")
+    @GetMapping(ApiPath.SELLERS + ApiPath.TOTAL_LESS_THAN)
+    public PageResponse<SellerTotalResponse> getSellersWithTotalLessThan(
+            @RequestParam PeriodType period,
+            @RequestParam BigDecimal amount,
+            Pageable pageable
+    ) {
+        return analyticsService.getSellersWithTotalLessThan(period, amount, pageable);
     }
 }
