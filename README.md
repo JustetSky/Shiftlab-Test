@@ -101,18 +101,18 @@ http://localhost:8080/swagger-ui.html
 
 ### Sellers
 ```
-POST /sellers               # Создать продавца
-GET  /sellers               # Получить всех продавцов
-GET  /sellers/{sellerId}    # Получить продавца по ID
-PUT  /sellers/{sellerId}    # Обновить информацию о продавце по ID
-DELETE /sellers/{sellerId}   # Удалить продавца
+POST   /sellers               # Создать продавца
+GET    /sellers               # Получить всех продавцов
+GET    /sellers/{sellerId}    # Получить продавца по ID
+PUT    /sellers/{sellerId}    # Обновить информацию о продавце по ID
+DELETE /sellers/{sellerId}    # Удалить продавца
 ```
 
 ### Transactions
 ```
 POST /transactions                     # Создать транзакцию
 GET  /transactions                     # Получить все транзакции
-GET  /transactions/{transactionId}    # Получить транзакцию по ID
+GET  /transactions/{transactionId}     # Получить транзакцию по ID
 GET  /transactions/seller/{sellerId}   # Получить транзакции продавца
 ```
 
